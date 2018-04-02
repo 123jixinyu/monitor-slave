@@ -47,3 +47,17 @@ if (!function_exists('config')) {
     }
 
 }
+
+if (!function_exists('log')) {
+
+    function log($message) {
+        \Library\System\Log::instance()->info($message);
+    }
+}
+
+if (!function_exists('log_error')) {
+
+    function log_error($message) {
+        \Library\System\Log::instance()->setPrefix('ERROR:')->info($message);
+    }
+}

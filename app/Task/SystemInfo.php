@@ -31,7 +31,6 @@ class SystemInfo extends Task {
     public function store($info) {
 
         $store = new RedisStore();
-
         $store->save($info);
     }
 }

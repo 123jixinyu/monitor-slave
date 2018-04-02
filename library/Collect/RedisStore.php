@@ -13,7 +13,7 @@ class RedisStore extends Store {
 
     public function connect($config) {
 
-
+        error_reporting(1);
         $redis = new \Redis();
 
         $this->store = $redis;
@@ -21,10 +21,10 @@ class RedisStore extends Store {
         $this->connect = $redis->connect($config['host'], $config['port'], 2);
 
         if (!$this->connect) {
-            throw new \Exception('redis connect fail!');
+            log_error('redis connect fail!');
         }
         if (!$redis->auth($config['password'])) {
-            throw new \Exception('redis auth fail!');
+            log_error('redis auth fail!');
         }
     }
 }
