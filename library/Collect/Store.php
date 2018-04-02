@@ -12,14 +12,26 @@ abstract class Store {
 
     protected $format = 'json';
 
+    protected $key = null;
+
     public function __construct() {
 
         $this->connect($this->getDriverConfig());
+        $this->key = $this->getKey();
     }
 
     abstract function save($info);
 
     abstract function connect($config);
+
+    abstract function length();
+
+    abstract function delete();
+
+    public function getKey() {
+
+        return env('APP_KEY');
+    }
 
     public function getDriverConfig() {
 

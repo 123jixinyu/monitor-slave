@@ -23,7 +23,6 @@ class SystemInfo extends Task {
         $sysInfo['now']              = date('Y-m-d H:i:s', time());
         $sysInfo['net']              = $system->getNetworkFlow();
 
-
         $this->store($sysInfo);
 
     }
@@ -31,6 +30,10 @@ class SystemInfo extends Task {
     public function store($info) {
 
         $store = new RedisStore();
+
+        if ($store->length() > env('MAX_LENGTH', 10)) {
+            $store->delete();
+        }
         $store->save($info);
     }
 }

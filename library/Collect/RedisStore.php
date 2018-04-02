@@ -8,23 +8,35 @@ class RedisStore extends Store {
 
     public function save($info) {
 
-        $this->store->lpush('test', $this->format($info));
+        $this->store->lpush($this->key, $this->format($info));
+    }
+
+    public function length() {
+
+        return $this->store->llen($this->key);
+    }
+
+    public function delete() {
+        return $this->store->rPop($this->key);
     }
 
     public function connect($config) {
+        try {
+            $redis = new \Redis();
 
-        error_reporting(1);
-        $redis = new \Redis();
+            $this->store = $redis;
 
-        $this->store = $redis;
+            $this->connect = $redis->connect($config['host'], $config['port'], 2);
 
-        $this->connect = $redis->connect($config['host'], $config['port'], 2);
-
-        if (!$this->connect) {
-            log_error('redis connect fail!');
+            if (!$this->connect) {
+                log_error('redis connect fail!');
+            }
+            if (!$redis->auth($config['password'])) {
+                log_error('redis auth fail!');
+            }
+        } catch (\Exception $exception) {
+            log_error($exception->getMessage());
         }
-        if (!$redis->auth($config['password'])) {
-            log_error('redis auth fail!');
-        }
+
     }
 }
