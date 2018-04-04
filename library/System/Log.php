@@ -23,11 +23,11 @@ class Log {
     }
 
     public function info($message) {
-        file_put_contents($this->file, $this->prefix . $message . PHP_EOL, FILE_APPEND);
+        file_put_contents($this->file, $this->prefix . date('Y-m-d H:i:s', time()) . ' : '. $message . PHP_EOL, FILE_APPEND);
     }
 
     public function setPrefix($prefix = '') {
-        $this->prefix = $prefix . date('Y-m-d H:i:s', time()) . ' : ';
+        $this->prefix = $prefix;
         return $this;
     }
 

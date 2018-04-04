@@ -31,10 +31,12 @@ class SystemInfo extends Task {
 
         $store = new RedisStore();
 
-        if ($store->length() > env('MAX_LENGTH', 10)) {
+        if ($store->length() >= env('MAX_LENGTH', 10)) {
             $store->delete();
         }
         $store->save($info);
+
+        log_info('store success');
     }
 }
 

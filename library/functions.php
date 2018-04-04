@@ -48,9 +48,9 @@ if (!function_exists('config')) {
 
 }
 
-if (!function_exists('log')) {
+if (!function_exists('log_info')) {
 
-    function log($message) {
+    function log_info($message) {
         \Library\System\Log::instance()->info($message);
     }
 }
