@@ -1,5 +1,7 @@
 <?php
 
+define('BASE_PATH', __DIR__);
+
 include "library/functions.php";
 
 include "library/autoload.php";

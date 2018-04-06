@@ -5,7 +5,7 @@ if (!function_exists('env')) {
 
     function env($key, $default = '') {
         $data = [];
-        $file = fopen(".env", "r");
+        $file = fopen(BASE_PATH.DIRECTORY_SEPARATOR.".env", "r");
         $i    = 0;
         while (!feof($file)) {
             $data[$i] = fgets($file);
@@ -31,7 +31,7 @@ if (!function_exists('config')) {
     function config($config_path) {
         $keys       = explode('.', $config_path);
         $configFile = array_shift($keys);
-        $filePath   = 'app/config/' . $configFile . '.php';
+        $filePath   = BASE_PATH.DIRECTORY_SEPARATOR.'app/config/' . $configFile . '.php';
         if (!file_exists($filePath)) {
             return null;
         }

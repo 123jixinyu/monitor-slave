@@ -27,6 +27,8 @@ class RedisStore extends Store {
             $redis = new \Redis();
 
             $this->store = $redis;
+            log_error($config['host']);
+            log_error($config['host']);
 
             $this->connect = $redis->connect($config['host'], $config['port'], 2);
 

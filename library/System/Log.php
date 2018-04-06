@@ -8,7 +8,7 @@ class Log {
 
     private $prefix = '';
 
-    private $file = 'monitor.log';
+    private $file = BASE_PATH . DIRECTORY_SEPARATOR . 'monitor.log';
 
     private function __construct() {
 
@@ -23,7 +23,7 @@ class Log {
     }
 
     public function info($message) {
-        file_put_contents($this->file, $this->prefix . date('Y-m-d H:i:s', time()) . ' : '. $message . PHP_EOL, FILE_APPEND);
+        file_put_contents($this->file, $this->prefix . date('Y-m-d H:i:s', time()) . ' : ' . $message . PHP_EOL, FILE_APPEND);
     }
 
     public function setPrefix($prefix = '') {
