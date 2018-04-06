@@ -15,8 +15,9 @@ abstract class Store {
     protected $key = null;
 
     public function __construct() {
-
-        $this->connect($this->getDriverConfig());
+        if(!$this->store){
+            $this->connect($this->getDriverConfig());
+        }
         $this->key = $this->getKey();
     }
 

@@ -9,6 +9,8 @@ class RedisStore extends Store {
     public function save($info) {
 
         $this->store->lpush($this->key, $this->format($info));
+        $this->store->close();
+
     }
 
     public function length() {

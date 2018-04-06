@@ -8,7 +8,6 @@ class SystemInfo extends Task {
 
     public function handle() {
 
-
         $system = new \Library\Collect\SystemInfo();
 
         //获取系统信息
@@ -22,6 +21,7 @@ class SystemInfo extends Task {
         $sysInfo['memRealFree']      = round($sysInfo['memRealFree'] / 1024, 3);
         $sysInfo['now']              = date('Y-m-d H:i:s', time());
         $sysInfo['net']              = $system->getNetworkFlow();
+        $sysInfo['win_n']            = $sysInfo['win_n'] ? $sysInfo['win_n'] : @php_uname();
 
         $this->store($sysInfo);
 
