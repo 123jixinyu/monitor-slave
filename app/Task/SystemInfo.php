@@ -2,13 +2,13 @@
 
 namespace App\Task;
 
-use Library\Collect\RedisStore;
+use App\Library\Collect\RedisStore;
 
 class SystemInfo extends Task {
 
     public function handle() {
 
-        $system = new \Library\Collect\SystemInfo();
+        $system = new \App\Library\Collect\SystemInfo();
 
         //获取系统信息
         $sysInfo                     = $system->getSystemInfo();
@@ -28,6 +28,7 @@ class SystemInfo extends Task {
     }
 
     public function store($info) {
+
 
         $store = new RedisStore();
 

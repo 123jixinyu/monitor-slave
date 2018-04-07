@@ -2,10 +2,9 @@
 
 define('BASE_PATH', __DIR__);
 
-include "library/functions.php";
 
-include "library/autoload.php";
+include 'vendor/autoload.php';
 
 $task = require_once "app/config/task.php";
 
-\Library\System\TaskManager::getInstance()->register($task)->run();
+\App\Library\System\TaskManager::getInstance()->register($task)->run();
